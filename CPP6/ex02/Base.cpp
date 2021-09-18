@@ -8,10 +8,13 @@ Base *generate(void)
     {
     case 0:
         instance = new A;
+        break;
     case 1:
         instance = new B;
+        break;
     case 2:
         instance = new C;
+        break;
     }
     return (instance);
 }

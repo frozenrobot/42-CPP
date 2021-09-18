@@ -1,5 +1,5 @@
-NAME = abc
-SRCS = main.cpp Base.cpp
+NAME = whatever
+SRCS = main.cpp
 FLAGS = -Wall -Werror -Wextra
 OBJS = $(SRCS:.cpp=.o)
 
