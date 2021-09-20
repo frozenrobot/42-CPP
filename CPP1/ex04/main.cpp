@@ -1,27 +1,44 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-
-/*Make a program called replace that takes a filename and two strings, let’s call them
-s1 and s2, that are NOT empty.
-It will open the file, and write its contents to FILENAME.replace, after replacing
-every occurrence of s1 with s2.
-All the member functions of the class std::string are allowed, except replace. Use
-them wisely!
-Of course, you will handle errors as best you can. Do not use the C file manipulation
-functions, because that would be cheating, and cheating’s bad, m’kay?
-You will turn in some test files to show your program works.*/
+#include <sys/stat.h>
+#include <sstream>
 
 int main(int argc, char *argv[])
 {
-    std::string temp;
-    std::string filename(argv[1]);
+    struct stat buffer;
 
-    if (argc != 4)
+    if (argc != 4 || !std::string(argv[2]).compare("") || !std::string(argv[3]).compare("") || stat(argv[1], &buffer))
     {
-        std::cout << "Invalid parameters" << std::endl;
+        std::cout << "Invalid parameters." << std::endl;
         return (0);
     }
-    std::ifstream ifs("to_read");
-    std::ofstream ofs(filename.append(".replace"));
+
+    std::string s1 = std::string(argv[2]);
+    std::string s2 = std::string(argv[3]);
+    std::ifstream infile((const char *)argv[1]);
+    if (!infile.good())
+    {
+        std::cout << "File not readable" << std::endl;
+        return (0);
+    }
+    std::stringstream buff;
+    std::string filetext;
+    std::string outfiletext;
+    buff << infile.rdbuf();
+    filetext = buff.str();
+    if (filetext.find(s1) == std::string::npos)
+        outfiletext = filetext;
+    while (1)
+    {
+        if (filetext.find(s1) == std::string::npos)
+            break ;
+        outfiletext += filetext.substr(0, filetext.find(s1));
+        outfiletext += s2;
+        filetext = filetext.substr(filetext.find(s1) + s1.length(), std::string::npos);
+        // filetext.replace(filetext.find(s1), s1.length(), s2);
+    }
+    infile.close();
+    std::ofstream outfile(std::string(argv[1]) + ".replace");
+    outfile << outfiletext;
 }

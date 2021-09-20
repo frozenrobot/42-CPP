@@ -8,74 +8,50 @@ int main(void)
 {
 	srand(time(NULL));
 
-	Bureaucrat supervisor("Supervisor", 1);
-	std::cout << supervisor << std::endl;
-	Bureaucrat francis("Francis", 25);
-	std::cout << francis << std::endl;
-
-	Form *shrub = new ShrubberyCreationForm("home");
+	Bureaucrat alice("Alice", 1);
+	std::cout << alice << std::endl;
+	Bureaucrat bob("Bob", 100);
+	std::cout << bob << std::endl;
+	Form *shrub = new ShrubberyCreationForm("target1");
 	std::cout << *shrub << std::endl;
-	shrub->beSigned(supervisor);
-	shrub->execute(francis);
-
-	Form *pres = new PresidentialPardonForm("Francis");
+	shrub->beSigned(bob);
+	shrub->execute(bob);
+	Form *pres = new PresidentialPardonForm("target2");
 	std::cout << *pres << std::endl;
-	supervisor.signForm(*pres);
-	pres->execute(supervisor);
-
-	Form *robot = new RobotomyRequestForm("Bender");
+	alice.signForm(*pres);
+	pres->execute(alice);
+	Form *robot = new RobotomyRequestForm("target3");
 	std::cout << *robot << std::endl;
-	robot->beSigned(supervisor);
-	robot->execute(francis);
-	francis.executeForm(*robot);
-	francis.executeForm(*robot);
+	robot->beSigned(alice);
+	alice.executeForm(*robot);
 
-	std::cout << "---" << std::endl;
+	std::cout << "=======" << std::endl;
 
 	try
 	{
-		francis.executeForm(*pres);
+		bob.executeForm(*pres);
 	}
 	catch(std::exception const &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << "---" << std::endl;
+	std::cout << "=======" << std::endl;
 
 	try
 	{
-		RobotomyRequestForm robot = RobotomyRequestForm("Bender");
-		std::cout << robot << std::endl;
-		robot.execute(supervisor);
+		(*robot).execute(bob);
 	}
 	catch(std::exception const &e)
 	{
 		std::cerr << e.what() << std::endl;
 	}
 
-	std::cout << "---" << std::endl;
+	std::cout << "=======" << std::endl;
 
 	try
 	{
-		PresidentialPardonForm pres = PresidentialPardonForm("Francis");
-		std::cout << pres << std::endl;
-		supervisor.signForm(pres);
-		pres.execute(francis);
-	}
-	catch(std::exception const &e)
-	{
-		std::cerr << e.what() << std::endl;
-	}
-
-	std::cout << "---" << std::endl;
-
-	try
-	{
-		PresidentialPardonForm pres = PresidentialPardonForm("Francis");
-		std::cout << pres << std::endl;
-		supervisor.signForm(pres);
-		francis.executeForm(pres);
+		(*pres).beSigned(bob);
 	}
 	catch(std::exception const &e)
 	{

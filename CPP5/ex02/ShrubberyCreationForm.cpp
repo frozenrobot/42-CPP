@@ -25,10 +25,7 @@ void ShrubberyCreationForm::execute(Bureaucrat &executor) const
 {
     Form::execute(executor);
     std::string filename = (this->_target + "_shrubbery");
-	std::ofstream outfile(filename, std::ios::out | std::ios::app);
-
-	if (!outfile.is_open() || outfile.bad())
-		throw OpenException();
+	std::ofstream outfile(filename);
     outfile <<  "               ,@@@@@@@,\n\
         ,,,.   ,@@@@@@/@@,  .oo8888o.\n\
         ,&%%&%&&%,@@@@@/@@@@@@,8888\\8/8o\n\
@@ -39,12 +36,5 @@ void ShrubberyCreationForm::execute(Bureaucrat &executor) const
         |o|        | |         | |\n\
         |.|        | |         | |\n\
         \\/ ._\\/_/__/  ,\\//__\\/.  \\//__/_\n";
-    if (outfile.bad())
-    {
-        outfile << std::endl;
-        outfile.close();
-        throw WriteException();
-    }
-	outfile << std::endl;
 	outfile.close();
 }

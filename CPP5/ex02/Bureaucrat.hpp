@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <exception>
+#include <cstdlib>
 class Bureaucrat;
 #include "Form.hpp"
 

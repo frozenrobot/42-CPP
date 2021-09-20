@@ -23,6 +23,7 @@ RobotomyRequestForm &RobotomyRequestForm::operator=(RobotomyRequestForm const &t
 
 void RobotomyRequestForm::execute(Bureaucrat &executor) const
 {
+	srand(time(NULL));
     Form::execute(executor);
 	std::cout << " < ZZDZ DDDZD DZDDZ DD > " << std::endl;
 	if (rand() % 2)
