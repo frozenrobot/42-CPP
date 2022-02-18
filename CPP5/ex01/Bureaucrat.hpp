@@ -24,20 +24,24 @@ class Bureaucrat
         void signForm(Form &form);
 
         class GradeTooHighException : public std::exception
-        {
-            const char * what() const throw()
-            {
-                return "EXCEPTION: Grade too high!";
-            }
-        };
+		{
+			public:
+				GradeTooHighException () throw();
+				GradeTooHighException (const GradeTooHighException &toCopy) throw();
+				GradeTooHighException &operator= (const GradeTooHighException &toAssign) throw();
+				virtual ~GradeTooHighException() throw();
+				const char *what() const throw();
+		};
 
         class GradeTooLowException : public std::exception
-        {
-            const char * what() const throw()
-            {
-                return "EXCEPTION: Grade too low!";
-            }
-        };
+		{
+			public:
+				GradeTooLowException () throw();
+				GradeTooLowException (const GradeTooLowException &toCopy) throw();
+				GradeTooLowException &operator= (const GradeTooLowException &toAssign) throw();
+				virtual ~GradeTooLowException() throw();
+				const char *what() const throw();
+		};
 };
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat &instance);

@@ -51,6 +51,60 @@ void Bureaucrat::decreaseGrade(void)
         throw Bureaucrat::GradeTooLowException();
 }
 
+
+Bureaucrat::GradeTooHighException::GradeTooHighException() throw()
+{
+    return;
+}
+
+Bureaucrat::GradeTooHighException::GradeTooHighException(const GradeTooHighException &toCopy) throw()
+{
+    return;
+}
+
+Bureaucrat::GradeTooHighException::~GradeTooHighException() throw()
+{
+    return;
+}
+
+Bureaucrat::GradeTooHighException &Bureaucrat::GradeTooHighException::operator=(const GradeTooHighException &toAssign) throw() 
+{
+	return (*this);
+}
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+    return "EXCEPTION: Grade too high!";
+}
+
+
+Bureaucrat::GradeTooLowException::GradeTooLowException() throw()
+{
+    return;
+}
+
+Bureaucrat::GradeTooLowException::GradeTooLowException(const GradeTooLowException &toCopy) throw()
+{
+    return;
+}
+
+Bureaucrat::GradeTooLowException::~GradeTooLowException() throw()
+{
+    return;
+}
+
+Bureaucrat::GradeTooLowException &Bureaucrat::GradeTooLowException::operator=(const GradeTooLowException &toAssign) throw() 
+{
+	return (*this);
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+    return "EXCEPTION: Grade too low!";
+}
+
+
+
 void Bureaucrat::signForm(Form &form)
 {
     if (form.isSigned())

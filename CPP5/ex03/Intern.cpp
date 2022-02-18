@@ -50,3 +50,29 @@ Form *Intern::makeForm(std::string const &formName, std::string const &target) c
 	std::cout << "Intern creates " << matches[i] << std::endl;
 	return (form);
 }
+
+
+Intern::NonExistentFormException::NonExistentFormException() throw()
+{
+    return;
+}
+
+Intern::NonExistentFormException::NonExistentFormException(const NonExistentFormException &toCopy) throw()
+{
+    return;
+}
+
+Intern::NonExistentFormException::~NonExistentFormException() throw()
+{
+    return;
+}
+
+Intern::NonExistentFormException &Intern::NonExistentFormException::operator=(const NonExistentFormException &toAssign) throw() 
+{
+	return (*this);
+}
+
+const char *Intern::NonExistentFormException::what() const throw()
+{
+    return "EXCEPTION: Form does not exist, check syntax.";
+}

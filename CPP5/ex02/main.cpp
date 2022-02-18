@@ -6,7 +6,7 @@
 
 int main(void)
 {
-	srand(time(NULL));
+	// srand(time(NULL));
 
 	Bureaucrat alice("Alice", 1);
 	std::cout << alice << std::endl;

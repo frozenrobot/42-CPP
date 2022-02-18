@@ -26,36 +26,44 @@ class Form
         virtual void execute(Bureaucrat &bureaucrat) const = 0;
 
         class GradeTooHighException : public std::exception
-        {
-            const char * what() const throw()
-            {
-                return "EXCEPTION: Grade too high!";
-            }
-        };
+		{
+			public:
+				GradeTooHighException () throw();
+				GradeTooHighException (const GradeTooHighException &toCopy) throw();
+				GradeTooHighException &operator= (const GradeTooHighException &toAssign) throw();
+				virtual ~GradeTooHighException() throw();
+				const char *what() const throw();
+		};
 
         class GradeTooLowException : public std::exception
-        {
-            const char * what() const throw()
-            {
-                return "EXCEPTION: Grade too low!";
-            }
-        };
+		{
+			public:
+				GradeTooLowException () throw();
+				GradeTooLowException (const GradeTooLowException &toCopy) throw();
+				GradeTooLowException &operator= (const GradeTooLowException &toAssign) throw();
+				virtual ~GradeTooLowException() throw();
+				const char *what() const throw();
+		};
 
         class AlreadySignedException : public std::exception
-        {
-            const char * what() const throw()
-            {
-                return "EXCEPTION: Form already signed.";
-            }
-        };
+		{
+			public:
+				AlreadySignedException () throw();
+				AlreadySignedException (const AlreadySignedException &toCopy) throw();
+				AlreadySignedException &operator= (const AlreadySignedException &toAssign) throw();
+				virtual ~AlreadySignedException() throw();
+				const char *what() const throw();
+		};
 
-        class UnsignedFormException: public std::exception 
-        {
-	        const char* what() const throw()
-            {
-                return "EXCEPTION: Form not signed.";
-            }
-	    };
+        class UnsignedFormException : public std::exception
+		{
+			public:
+				UnsignedFormException () throw();
+				UnsignedFormException (const UnsignedFormException &toCopy) throw();
+				UnsignedFormException &operator= (const UnsignedFormException &toAssign) throw();
+				virtual ~UnsignedFormException() throw();
+				const char *what() const throw();
+		};
 };
 
 std::ostream &operator<<(std::ostream &o, Form &instance);

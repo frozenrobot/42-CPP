@@ -20,10 +20,11 @@ class Array
         size_t size(void) const;
         
         class OutOfLimitsException: public std::exception {
-            virtual const char* what() const throw()
-            {
-                return "EXCEPTION: Index value outside limits.";
-            }
+            public:
+                OutOfLimitsException () throw();
+                OutOfLimitsException (const OutOfLimitsException &toCopy) throw();
+                virtual ~OutOfLimitsException() throw();
+                const char *what() const throw();
 	    };
 };
 

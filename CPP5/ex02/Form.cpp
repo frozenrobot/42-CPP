@@ -67,8 +67,113 @@ void Form::execute(Bureaucrat &bcrat) const
 		throw Form::UnsignedFormException();
 }
 
+
 std::ostream &operator<<(std::ostream &o, Form &instance)
 {
 	o << "Form name: " << instance.getName() << ", Form signed: " << ((instance.isSigned()) ? "Yes" : "No") << ", Sign Grade: " << instance.getSignGrade() << ", Execute Grade: " << instance.getExecGrade();
 	return (o);
+}
+
+Form::GradeTooHighException::GradeTooHighException() throw()
+{
+    return;
+}
+
+Form::GradeTooHighException::GradeTooHighException(const GradeTooHighException &toCopy) throw()
+{
+    return;
+}
+
+Form::GradeTooHighException::~GradeTooHighException() throw()
+{
+    return;
+}
+
+Form::GradeTooHighException &Form::GradeTooHighException::operator=(const GradeTooHighException &toAssign) throw() 
+{
+	return (*this);
+}
+
+const char *Form::GradeTooHighException::what() const throw()
+{
+    return "EXCEPTION: Grade too high!";
+}
+
+
+Form::GradeTooLowException::GradeTooLowException() throw()
+{
+    return;
+}
+
+Form::GradeTooLowException::GradeTooLowException(const GradeTooLowException &toCopy) throw()
+{
+    return;
+}
+
+Form::GradeTooLowException::~GradeTooLowException() throw()
+{
+    return;
+}
+
+Form::GradeTooLowException &Form::GradeTooLowException::operator=(const GradeTooLowException &toAssign) throw() 
+{
+	return (*this);
+}
+
+const char *Form::GradeTooLowException::what() const throw()
+{
+    return "EXCEPTION: Grade too low!";
+}
+
+
+
+Form::AlreadySignedException::AlreadySignedException() throw()
+{
+    return;
+}
+
+Form::AlreadySignedException::AlreadySignedException(const AlreadySignedException &toCopy) throw()
+{
+    return;
+}
+
+Form::AlreadySignedException::~AlreadySignedException() throw()
+{
+    return;
+}
+
+Form::AlreadySignedException &Form::AlreadySignedException::operator=(const AlreadySignedException &toAssign) throw() 
+{
+	return (*this);
+}
+
+const char *Form::AlreadySignedException::what() const throw()
+{
+    return "EXCEPTION: Form already signed.";
+}
+
+
+Form::UnsignedFormException::UnsignedFormException() throw()
+{
+    return;
+}
+
+Form::UnsignedFormException::UnsignedFormException(const UnsignedFormException &toCopy) throw()
+{
+    return;
+}
+
+Form::UnsignedFormException::~UnsignedFormException() throw()
+{
+    return;
+}
+
+Form::UnsignedFormException &Form::UnsignedFormException::operator=(const UnsignedFormException &toAssign) throw() 
+{
+	return (*this);
+}
+
+const char *Form::UnsignedFormException::what() const throw()
+{
+    return "EXCEPTION: Form not signed.";
 }

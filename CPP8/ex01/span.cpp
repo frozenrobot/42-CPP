@@ -1,5 +1,3 @@
-#include "span.hpp"
-
 Span::Span(size_t n) : len(n)
 {
     return;
@@ -29,13 +27,13 @@ void Span::addNumber(int num)
 	if (this->span.size() < this->len)
 		this->span.insert(num);
     else
-        throw Span::FullSpanException();
+        throw std::exception();
 }
 
 size_t Span::longestSpan(void) const
 {
 	if (this->span.size() <= 1)
-		throw Span::EmptySpanException();
+		throw std::exception();
     else
     {
         int max = *std::max_element(this->span.begin(), this->span.end());
@@ -47,27 +45,22 @@ size_t Span::longestSpan(void) const
 size_t Span::shortestSpan(void) const
 {
 	if (this->span.size() <= 1)
-		throw Span::EmptySpanException();
+		throw std::exception();
     else
     {
         std::multiset<int>::iterator begin = this->span.begin();
-        std::multiset<int>::iterator next;
+        std::multiset<int>::iterator prev;
         size_t mindist = *std::max_element(this->span.begin(), this->span.end());
         size_t dist;
+        prev = begin;
+        begin++;
         while (begin != this->span.end())
         {
-            next = begin;
-            while (next != this->span.end())
-            {
-                if (begin != next)
-                {
-                    dist = std::abs(*next - *begin);
-                    if (dist < mindist)
-                        mindist = dist;
-                }
-                next++;
-            }
+            dist = std::abs(*prev - *begin);
+            if (dist < mindist)
+                mindist = dist;
             begin++;
+            prev++;
         }
         return (mindist);
     }

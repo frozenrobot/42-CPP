@@ -5,18 +5,9 @@
 #include <map>
 #include <iostream>
 #include <exception>
+#include <list>
 
 template < typename T >
-typename T::iterator easyfind(T &container, int value)
-{
-    typename T::iterator it;
-    typename T::iterator ite = container.end();
-    for (it = container.begin(); it != ite; it++)
-    {
-        if (*it == value)
-            return (it);
-    }
-    throw std::exception();
-}
+typename T::iterator easyfind(T &container, int value);
 
 #endif

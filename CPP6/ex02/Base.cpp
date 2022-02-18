@@ -31,5 +31,32 @@ void identify(Base* p)
 
 void identify(Base& p)
 {
-    identify(&p);
+    char type = 0;
+    Base identity;
+    try
+    {
+        identity = dynamic_cast<A &>(p);
+        type = 'A';
+    }
+    catch(const std::exception& e)
+    {}
+
+    try
+    {
+        identity = dynamic_cast<B &>(p);
+        type = 'B';
+    }
+    catch(const std::exception& e)
+    {}
+
+    try
+    {
+        identity = dynamic_cast<C &>(p);
+        type = 'C';
+    }
+    catch(const std::exception& e)
+    {}
+
+    std::cout << type;
+
 }

@@ -1,6 +1,5 @@
 #include "mutantstack.hpp"
 
-
 int main(void)
 {
 	MutantStack<int> mstack;
@@ -24,5 +23,36 @@ int main(void)
 	++it;
 	}
 	std::stack<int> s(mstack);
-	return 0;
+
+	std::cout << "\n\n";
+	
+	std::stack<int> stack;
+	stack.push(5);
+	stack.push(17);
+	std::cout << stack.top() << std::endl;
+	stack.pop();
+	std::cout << stack.size() << std::endl;
+	stack.push(3);
+	stack.push(5);
+	stack.push(737);
+	stack.push(0);
+	for (int i = 0; i < 5; i++) {
+		std::cout << stack.top() << std::endl;
+		stack.pop();
+	}
+
+	std::cout << "\n\n";
+
+	std::cout << mstack.empty() << std::endl;
+	std::cout << mstack.size() << std::endl;
+
+	MutantStack<int> mstack2;
+	MutantStack<int> mstack3;
+	mstack2.push(2);
+	mstack3.push(3);
+	std::cout << mstack2.top() << std::endl;
+	std::cout << mstack3.top() << std::endl;
+	mstack2.swap(mstack3);
+	std::cout << mstack2.top() << std::endl;
+	std::cout << mstack3.top() << std::endl;
 }

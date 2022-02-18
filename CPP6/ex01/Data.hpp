@@ -4,10 +4,7 @@
 #include <iostream>
 #include <string>
 
-struct Data
-{
-    Data(){}
-};
+struct Data {};
 
 uintptr_t serialize(Data* ptr);
 Data* deserialize(uintptr_t raw);

@@ -9,15 +9,6 @@
 class Intern
 {
     private:
-        // class FormMatch
-        // {
-        //     private:
-        //         std::string name;
-        //         std::string target;
-        //     public:
-        //         FormMatch(std::string name, std::string target);
-        //         Form *execute(std::string type)
-        // };
         std::string name;
         std::string target;
         std::string matches[3];
@@ -28,12 +19,16 @@ class Intern
         virtual ~Intern();
         Form *makeForm(std::string const &formName, std::string const &target) const;
 
-        class NonExistentFormException: public std::exception {
-            virtual const char* what() const throw()
-            {
-                return "EXCEPTION: Form does not exist, check syntax.";
-            }
-        };
+        class NonExistentFormException : public std::exception
+		{
+			public:
+				NonExistentFormException () throw();
+				NonExistentFormException (const NonExistentFormException &toCopy) throw();
+				NonExistentFormException &operator= (const NonExistentFormException &toAssign) throw();
+				virtual ~NonExistentFormException() throw();
+				const char *what() const throw();
+		};
+
 };
 
 #endif

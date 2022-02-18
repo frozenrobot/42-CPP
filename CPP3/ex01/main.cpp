@@ -9,14 +9,5 @@ int main(void)
     scav3 = scav;
     scav3.attack("target");
     scav.guardGate();
-	// ClapTrap clap("CL4P");
-    // ClapTrap palc("P4LC");
-    // ClapTrap clap2;
-
-    // clap.attack("P4LC");
-    // palc.takeDamage(0);
-    // palc.beRepaired(5);
-    // clap2 = clap;
-    // clap2.attack("PL4C");
 	return (0);
 }

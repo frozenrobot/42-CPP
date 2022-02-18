@@ -19,21 +19,8 @@ class Span
         void addNumber(int num);
         size_t shortestSpan(void) const;
         size_t longestSpan(void) const;
-
-        class FullSpanException: public std::exception {
-            virtual const char* what() const throw()
-            {
-                return "EXCEPTION: Span full, cannot add another number.";
-            }
-        };
-
-        class EmptySpanException: public std::exception {
-            virtual const char* what() const throw()
-            {
-                return "EXCEPTION: Not enough numbers to calculate span yet.";
-            }
-        };
-
 };
+
+#include "span.cpp"
 
 #endif

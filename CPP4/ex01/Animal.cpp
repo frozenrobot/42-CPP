@@ -73,6 +73,10 @@ Dog & Dog::operator=(Dog const &toAssign)
 {
     std::cout << "Dog copy assignment operator called" << std::endl;
     this->type = toAssign.type;
+    for (int i = 0; i < 100; i++)
+    {
+        this->brain->ideas[i] = toAssign.brain->ideas[i];
+    }
     return (*this);
 }
 
@@ -88,6 +92,22 @@ void Dog::makeSound(void) const
     std::cout << "Woof!" << std::endl;
 }
 
+void Dog::setIdea(int n, std::string idea)
+{
+    if (n >= 0 && n < 100)
+    {
+        this->brain->ideas[n] = idea;
+    }
+}
+
+std::string Dog::getIdea(int n)
+{
+    if (n >= 0 && n < 100)
+    {
+        return (this->brain->ideas[n]);
+    }
+    return (NULL);
+}
 
 
 // CAT
@@ -116,6 +136,10 @@ Cat & Cat::operator=(Cat const &toAssign)
 {
     std::cout << "Cat copy assignment operator called" << std::endl;
     this->type = toAssign.type;
+    for (int i = 0; i < 100; i++)
+    {
+        this->brain->ideas[i] = toAssign.brain->ideas[i];
+    }
     return (*this);
 }
 
@@ -146,4 +170,37 @@ std::string Cat::getIdea(int n)
         return (this->brain->ideas[n]);
     }
     return (NULL);
+}
+
+
+
+// BRAIN
+
+Brain::Brain(void)
+{
+    std::cout << "Brain constructor called" << std::endl;
+}
+
+Brain::~Brain(void)
+{
+    std::cout << "Brain destructor called" << std::endl;
+}
+
+Brain::Brain(Brain const & toCopy)
+{
+    for (int i = 0; i < 100; i++)
+    {
+        this->ideas[i] = toCopy.ideas[i];
+    }
+    std::cout << "Brain copy constructor called" << std::endl;
+}
+
+Brain & Brain::operator=(Brain const &toAssign)
+{
+    std::cout << "Brain copy assignment operator called" << std::endl;
+    for (int i = 0; i < 100; i++)
+    {
+        this->ideas[i] = toAssign.ideas[i];
+    }
+    return (*this);
 }

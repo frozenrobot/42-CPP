@@ -111,12 +111,16 @@ Character::Character(Character const &toCopy) : _name(toCopy.getName())
 Character & Character::operator=(Character const &toAssign)
 {
 	this->_name = toAssign.getName();
-	for (int i = 0; i < 4; i++)
+	int i;
+	for (i = 0; i < 4; i++)
+	{
+		if (this->_materia[i])
+			delete (this->_materia[i]);
+	}
+	for (i = 0; i < 4; i++)
 	{
 		if (toAssign._materia[i])
-			this->_materia[i] = toAssign._materia[i];
-		else
-			this->_materia[i] = NULL;
+			this->_materia[i] = toAssign._materia[i]->clone();
 	}
 	return (*this);
 }
@@ -181,19 +185,31 @@ MateriaSource::MateriaSource(void)
 
 MateriaSource::MateriaSource(MateriaSource const &toCopy)
 {
-	for (int i = 0; i < 4; i++)
+	int i;
+	for (i = 0; i < 4; i++)
+	{
+		if (this->_store[i])
+			delete (this->_store[i]);
+	}
+	for (i = 0; i < 4; i++)
 	{
 		if (toCopy._store[i])
-			this->_store[i] = toCopy._store[i];
+			this->_store[i] = toCopy._store[i]->clone();
 	}
 }
 
 MateriaSource &MateriaSource::operator=(MateriaSource const &toAssign)
 {
-	for (int i = 0; i < 4; i++)
+	int i;
+	for (i = 0; i < 4; i++)
+	{
+		if (this->_store[i])
+			delete (this->_store[i]);
+	}
+	for (i = 0; i < 4; i++)
 	{
 		if (toAssign._store[i])
-			this->_store[i] = toAssign._store[i];
+			this->_store[i] = toAssign._store[i]->clone();
 	}
 	return (*this);
 }

@@ -21,6 +21,10 @@ class Animal
 class Brain
 {
     public:
+        Brain();
+        Brain(Brain const & toCopy);
+        Brain &operator=(Brain const &toAssign);
+        virtual ~Brain();
         std::string ideas[100];
 };
 
@@ -32,6 +36,8 @@ class Dog : public Animal
         Dog &operator=(Dog const &toAssign);
         ~Dog();
         virtual void makeSound(void) const;
+        void setIdea(int n, std::string idea);
+        std::string getIdea(int n);
 
     private:
         Brain *brain;

@@ -1,5 +1,5 @@
-#include "Fixed.hpp"
-
+# include <iostream>
+# include "Fixed.hpp"
 
 int main( void ) {
 Fixed a;
@@ -11,5 +11,13 @@ std::cout << a++ << std::endl;
 std::cout << a << std::endl;
 std::cout << b << std::endl;
 std::cout << Fixed::max( a, b ) << std::endl;
+
+std::cout << "Min(a, b) = " << Fixed::min( a, b ) << std::endl;
+std::cout << "b / a = " << (b / a) << std::endl;
+std::cout << "b + a = " << (b + a) << std::endl;
+std::cout << "(b == a) = " << (b == a) << std::endl;
+std::cout << "(b > a) = " << (b > a) << std::endl;
+std::cout << "(b < a) = " << (b < a) << std::endl;
+std::cout << "b = " << b << std::endl;
 return 0;
 }

@@ -69,6 +69,30 @@ size_t Array<T>::size(void) const
     return (this->len);
 }
 
+template < typename T >
+Array<T>::OutOfLimitsException::OutOfLimitsException() throw()
+{
+    return;
+}
+
+template < typename T >
+Array<T>::OutOfLimitsException::OutOfLimitsException(const OutOfLimitsException &toCopy) throw()
+{
+    return;
+}
+
+template < typename T >
+Array<T>::OutOfLimitsException::~OutOfLimitsException() throw()
+{
+    return;
+}
+
+template < typename T >
+const char *Array<T>::OutOfLimitsException::what() const throw()
+{
+    return "EXCEPTION: Index value outside limits.";
+}
+
 int main(void)
 {
     Array<char>chararray(5);
@@ -79,6 +103,16 @@ int main(void)
         std::cout << chararray[i] << " ";
     }
     std::cout << std::endl;
+
+	Array<std::string>zeroarray;
+	try
+	{
+		std::cout << zeroarray[0] << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 
     Array<std::string>strarray(3);
     strarray[0] = "one";
@@ -108,3 +142,31 @@ int main(void)
 		std::cerr << e.what() << '\n';
 	}
 }
+
+
+
+// class Awesome
+
+// {
+
+// public:
+
+// Awesome(void): _n(0) {}
+
+// Awesome(int n):_n(n){}
+
+// Awesome & operator= (Awesome & a) {_n = a._n; return *this;} bool operator==( Awesome const & rhs) const { return (this->_n == rhs._n); } bool operator!=( Awesome const & rhs ) const { return (this->_n != rhs._n); } bool operator>( Awesome const & rhs ) const {return (this->_n > rhs._n); } bool operator<( Awesome const & rhs) const { return (this->_n < rhs._n); } bool operator>=( Awesome const & rhs) const { return (this->_n >= rhs._n); } bool operator<=( Awesome const & rhs) const { return (this->_n <= rhs._n); } int get_n() const { return _n; } private: int
+
+// _n; };
+
+// std::ostream& operator<<(std::ostream & o, const Awesome &a) {o<<a.get_n(); return
+
+// o; }
+
+// int main(void) {
+// 	Array<Awesome>array(3);
+//     for (int i = 0; i < 3; i++)
+//     {
+//         std::cout << array[i] << std::endl;
+//     }
+// }

@@ -3,8 +3,11 @@
 
 int main()
 {
-    const Animal* j = new Animal();
+    // const Animal* j = new Animal();
     const Animal* i = new Cat();
-    delete j;//should not create a leak
+    Cat k;
+    i->makeSound();
+    k.setIdea(0, "Food");
+    // delete j;//should not create a leak
     delete i;
 }
